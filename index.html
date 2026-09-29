@@ -13,7 +13,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  </script>
 </head>
 <body>
 
@@ -37,141 +40,168 @@
 
 <main id="top">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero dark" aria-labelledby="hero-title">
-    <figure class="hero__media">
-      <div class="parallax" data-speed="0.35">
-        <img src="assets/images/warsaw-ghetto-wall-construction.jpg" width="1731" height="1200"
+  <!-- ============ HERO (scroll scene: title lifts away, photo shrinks into a framed object) ============ -->
+  <section class="scene scene--hero dark" data-scene="hero" style="--len: 260vh" aria-labelledby="hero-title">
+    <div class="scene__pin">
+      <figure class="hero__frame" data-el="frame">
+        <img data-el="img" src="assets/images/warsaw-ghetto-wall-construction.jpg" width="1731" height="1200"
              alt="Black-and-white photograph of laborers standing on scaffolding as they lay bricks for a tall wall across a city street."
              fetchpriority="high">
+        <figcaption class="label label--overlay" data-el="label">
+          <span class="label__title">Building the ghetto wall</span>
+          <span class="label__text">Polish and Jewish laborers construct a section of the wall that separated the Warsaw ghetto from the rest of the city.</span>
+          <span class="label__meta">Warsaw, 1940 · USHMM, photo no. 37295</span>
+        </figcaption>
+      </figure>
+      <div class="hero__stack">
+        <div class="hero__content" data-el="title">
+          <p class="eyebrow hero__eyebrow">A digital exhibition</p>
+          <h1 id="hero-title" class="hero__title">Road of<br>Resistance</h1>
+          <p class="hero__sub">Three women’s journeys in defying the Nazis</p>
+        </div>
+        <p class="hero__line" data-el="line">Behind walls like this one,<br>a resistance was born.</p>
       </div>
-      <figcaption class="label label--overlay">
-        <span class="label__title">Building the ghetto wall</span>
-        <span class="label__text">Polish and Jewish laborers construct a section of the wall that separated the Warsaw ghetto from the rest of the city.</span>
-        <span class="label__meta">Warsaw, 1940 · USHMM, photo no. 37295</span>
-      </figcaption>
-    </figure>
-    <div class="hero__content" data-hero-content>
-      <p class="eyebrow hero__eyebrow">A digital exhibition</p>
-      <h1 id="hero-title" class="hero__title">Road of<br>Resistance</h1>
-      <p class="hero__sub">Three women’s journeys in defying the Nazis</p>
+      <a class="scroll-cue" href="#intro" aria-label="Scroll to begin" data-el="cue"><span></span></a>
     </div>
-    <a class="scroll-cue" href="#intro" aria-label="Scroll to begin"><span></span></a>
   </section>
 
-  <!-- ============ INTRO ============ -->
-  <section id="intro" class="section section--center">
-    <p class="eyebrow reveal">The theme of return</p>
-    <h2 class="headline reveal" style="--d:.1s">Each had a way out.<br><span class="accent">Each turned back.</span></h2>
-    <div class="panel panel--center reveal" style="--d:.2s">
-      <p>Frumka Płotnicka was due to leave for the Land of Israel in 1939. Vladka Meed carried papers that let her live as a Polish girl. Hannah Senesh had already escaped. Each could have saved herself. Instead, each stayed—or came back—to fight for her people.</p>
-      <p>This exhibition follows three Jewish women who risked everything to resist the Nazis, and asks what their choices mean for us.</p>
+  <!-- ============ INTRO (scroll scene: words light up as you read) ============ -->
+  <section id="intro" class="scene scene--words" data-scene="words" style="--len: 230vh">
+    <div class="scene__pin scene__pin--center">
+      <p class="eyebrow">The theme of return</p>
+      <p class="words" data-words>Three women had a way out. Frumka was asked to stay behind. Vladka held papers that could hide her. Hannah had already escaped. <em>Each one turned back.</em></p>
     </div>
+  </section>
+
+  <section class="section section--center section--tight">
     <ul class="trio" aria-label="The three women">
-      <li class="trio__item reveal reveal--scale" style="--d:.05s">
+      <li class="trio__item reveal reveal--tilt" style="--d:.05s; --r:-3deg">
         <a href="#frumka">
           <img src="assets/images/frumka-plotnicka-portrait.jpg" width="437" height="600" loading="lazy" alt="Portrait of Frumka Płotnicka, a young woman with dark hair pulled back, looking at the camera.">
           <span class="trio__name">Frumka Płotnicka</span><span class="trio__years">1914–1943</span>
         </a>
       </li>
-      <li class="trio__item reveal reveal--scale" style="--d:.15s">
+      <li class="trio__item reveal reveal--tilt" style="--d:.15s; --r:2deg">
         <a href="#vladka">
           <img src="assets/images/vladka-meed-courier.jpg" width="505" height="768" loading="lazy" alt="Vladka Meed as a young woman in a light dress, standing on a grassy path holding a handbag.">
           <span class="trio__name">Vladka Meed</span><span class="trio__years">1921–2012</span>
         </a>
       </li>
-      <li class="trio__item reveal reveal--scale" style="--d:.25s">
+      <li class="trio__item reveal reveal--tilt" style="--d:.25s; --r:-2deg">
         <a href="#hannah">
           <img src="assets/images/hannah-senesh-uniform.jpg" width="540" height="700" loading="lazy" alt="Hannah Senesh in a military uniform and cap, smiling and saluting.">
           <span class="trio__name">Hannah Senesh</span><span class="trio__years">1921–1944</span>
         </a>
       </li>
     </ul>
+    <div class="panel panel--center reveal">
+      <p>This exhibition follows three Jewish women who risked everything to resist the Nazis. At each of their turning points, you will be asked to stand in her place.</p>
+    </div>
   </section>
 
   <!-- ============ 01 FORGOTTEN ============ -->
-  <section id="missing" class="section chapter" data-chapter>
-    <header class="chapter__head">
+  <section id="missing" class="chapter" data-chapter>
+    <header class="section chapter__head">
       <p class="chapter__num reveal">01</p>
       <p class="eyebrow reveal">A missing chapter</p>
       <h2 class="headline headline--xl reveal" style="--d:.1s">Their stories were almost lost.</h2>
     </header>
 
-    <div class="split">
-      <div class="panel reveal">
-        <p>In Holocaust studies, the history of women is only now being explored.<sup class="fn"><a id="ref-1" href="#fn-1" aria-label="Note 1">1</a></sup> Teenage girls often took on the most dangerous missions—smuggling weapons into ghettos, warning communities of coming deportations, and spiriting children to the “Aryan side”—because men were more easily identified as Jews.<sup class="fn"><a id="ref-2" href="#fn-2" aria-label="Note 2">2</a></sup></p>
-        <p>Yet their names rarely appear. Public attention is drawn to the camps, and some avoid stories of resistance, fearing they suggest the Holocaust “was not so bad.”<sup class="fn"><a id="ref-3" href="#fn-3" aria-label="Note 3">3</a></sup></p>
-      </div>
-      <div class="panel reveal" style="--d:.15s">
-        <p>This exhibition also sets out to correct a myth: that Jews went “like sheep to the slaughter.” Jewish partisans fought in ten countries across Europe, from Belgium to Greece to Poland.<sup class="fn"><a id="ref-6" href="#fn-6" aria-label="Note 6">6</a></sup> Women stood at the forefront of this resistance—just as women led great movements in American history, from Frances Willard to Ida B. Wells.<sup class="fn"><a id="ref-4" href="#fn-4" aria-label="Note 4">4</a></sup></p>
-      </div>
-    </div>
-
-    <div class="stat reveal reveal--scale">
-      <p class="stat__num"><span data-count="48" data-suffix="%">48%</span></p>
-      <p class="stat__label">of American Millennials and Gen Z could not name a single concentration camp or ghetto.<sup class="fn"><a id="ref-7" href="#fn-7" aria-label="Note 7">7</a></sup></p>
-    </div>
-
-    <div class="stat-row">
-      <div class="stat stat--sm reveal">
-        <p class="stat__num"><span data-count="56" data-suffix="%">56%</span></p>
-        <p class="stat__label">knew what Auschwitz was.<sup class="fn"><a id="ref-8" href="#fn-8" aria-label="Note 8">8</a></sup></p>
-      </div>
-      <div class="stat stat--sm reveal" style="--d:.15s">
-        <p class="stat__num"><span data-count="63" data-suffix="%">63%</span></p>
-        <p class="stat__label">did not know how many Jews were murdered in the Holocaust.</p>
+    <div class="section section--flush">
+      <div class="split">
+        <div class="panel reveal reveal--left">
+          <p>In Holocaust studies, the history of women is only now being explored.<sup class="fn"><a id="ref-1" href="#fn-1" aria-label="Note 1">1</a></sup> Teenage girls often took on the most dangerous missions—smuggling weapons into ghettos, warning communities of coming deportations, and spiriting children to the “Aryan side”—because men were more easily identified as Jews.<sup class="fn"><a id="ref-2" href="#fn-2" aria-label="Note 2">2</a></sup></p>
+          <p>Yet their names rarely appear. Public attention is drawn to the camps, and some avoid stories of resistance, fearing they suggest the Holocaust “was not so bad.”<sup class="fn"><a id="ref-3" href="#fn-3" aria-label="Note 3">3</a></sup></p>
+        </div>
+        <div class="panel reveal reveal--right" style="--d:.15s">
+          <p>This exhibition also sets out to correct a myth: that Jews went “like sheep to the slaughter.” Jewish partisans fought in ten countries across Europe, from Belgium to Greece to Poland.<sup class="fn"><a id="ref-6" href="#fn-6" aria-label="Note 6">6</a></sup> Women stood at the forefront of this resistance—just as women led great movements in American history, from Frances Willard to Ida B. Wells.<sup class="fn"><a id="ref-4" href="#fn-4" aria-label="Note 4">4</a></sup></p>
+        </div>
       </div>
     </div>
 
-    <div class="gallery gallery--2">
-      <figure class="object reveal reveal--scale">
-        <img src="assets/images/survey-us-map.png" width="1930" height="1798" loading="lazy" alt="Map of the United States shaded by state in shades of red, showing the percentage of Millennials and Gen Z who cannot name a concentration camp or ghetto; darker states have higher percentages.">
-        <figcaption class="label">
-          <span class="label__title">Holocaust knowledge, state by state</span>
-          <span class="label__text">Share of Millennials and Gen Z unable to name a camp or ghetto. In New York, the figure was 58%.</span>
-          <span class="label__meta">United States, 2020 · Claims Conference</span>
-        </figcaption>
-      </figure>
-      <figure class="object reveal reveal--scale" style="--d:.15s">
-        <img src="assets/images/survey-canada-chart.png" width="960" height="720" loading="lazy" alt="Bar chart: 15 percent of all Canadian adults and 22 percent of Millennials and Gen Z are not sure whether they have heard of the Holocaust.">
-        <figcaption class="label">
-          <span class="label__title">Holocaust awareness in Canada</span>
-          <span class="label__text">15% of Canadian adults, and 22% of Millennials and Gen Z, were unsure whether they had heard of the Holocaust.</span>
-          <span class="label__meta">Canada · Claims Conference and Azrieli Foundation</span>
-        </figcaption>
-      </figure>
+    <!-- scroll scene: 100 dots fill to 48 -->
+    <div class="scene scene--dots" data-scene="dots" style="--len: 240vh">
+      <div class="scene__pin scene__pin--center">
+        <div class="dots-layout">
+          <div class="dots-copy">
+            <p class="stat__num stat__num--dots"><span data-el="num">48%</span></p>
+            <p class="stat__label">of American Millennials and Gen Z could not name a single concentration camp or ghetto.<sup class="fn"><a id="ref-7" href="#fn-7" aria-label="Note 7">7</a></sup></p>
+            <p class="dots__you" data-el="you">That is nearly half of a generation. Maybe yours.</p>
+          </div>
+          <div class="dots" data-el="dots" role="img" aria-label="48 of 100 dots highlighted"></div>
+        </div>
+      </div>
     </div>
 
-    <div class="panel panel--center reveal">
-      <p>If the next generation does not know the basics of the Holocaust, it is unlikely to know about Jewish resistance—let alone the women who led it. Surveys in four other countries revealed the same “gaps in Holocaust knowledge.”<sup class="fn"><a id="ref-9" href="#fn-9" aria-label="Note 9">9</a></sup></p>
+    <div class="section section--flush">
+      <div class="stat-row">
+        <div class="stat stat--sm reveal">
+          <p class="stat__num"><span data-count="56" data-suffix="%">56%</span></p>
+          <p class="stat__label">knew what Auschwitz was.<sup class="fn"><a id="ref-8" href="#fn-8" aria-label="Note 8">8</a></sup></p>
+        </div>
+        <div class="stat stat--sm reveal" style="--d:.15s">
+          <p class="stat__num"><span data-count="63" data-suffix="%">63%</span></p>
+          <p class="stat__label">did not know how many Jews were murdered in the Holocaust.</p>
+        </div>
+      </div>
+
+      <div class="gallery gallery--2">
+        <figure class="object reveal reveal--tilt" style="--r:-1.5deg">
+          <img src="assets/images/survey-us-map.png" width="1930" height="1798" loading="lazy" alt="Map of the United States shaded by state in shades of red, showing the percentage of Millennials and Gen Z who cannot name a concentration camp or ghetto; darker states have higher percentages.">
+          <figcaption class="label">
+            <span class="label__title">Holocaust knowledge, state by state</span>
+            <span class="label__text">Share of Millennials and Gen Z unable to name a camp or ghetto. In New York, the figure was 58%.</span>
+            <span class="label__meta">United States, 2020 · Claims Conference</span>
+          </figcaption>
+        </figure>
+        <figure class="object reveal reveal--tilt" style="--d:.15s; --r:1.5deg">
+          <img src="assets/images/survey-canada-chart.png" width="960" height="720" loading="lazy" alt="Bar chart: 15 percent of all Canadian adults and 22 percent of Millennials and Gen Z are not sure whether they have heard of the Holocaust.">
+          <figcaption class="label">
+            <span class="label__title">Holocaust awareness in Canada</span>
+            <span class="label__text">15% of Canadian adults, and 22% of Millennials and Gen Z, were unsure whether they had heard of the Holocaust.</span>
+            <span class="label__meta">Canada · Claims Conference and Azrieli Foundation</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="panel panel--center reveal">
+        <p>If the next generation does not know the basics of the Holocaust, it is unlikely to know about Jewish resistance—let alone the women who led it. Surveys in four other countries revealed the same “gaps in Holocaust knowledge.”<sup class="fn"><a id="ref-9" href="#fn-9" aria-label="Note 9">9</a></sup></p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 02 THE WALLS ============ -->
+  <!-- ============ 02 THE WALLS (scroll scene: walls close in around the reader) ============ -->
   <section id="walls" class="chapter" data-chapter>
-    <figure class="band dark">
-      <div class="parallax" data-speed="0.25">
-        <img src="assets/images/krakow-ghetto-wall.jpg" width="1696" height="1200" loading="lazy" alt="Black-and-white photograph of forced laborers working among piles of stone and brick beside wooden structures, building a ghetto wall.">
+    <div class="scene scene--walls dark" data-scene="walls" style="--len: 320vh">
+      <div class="scene__pin">
+        <figure class="walls__media">
+          <img data-el="img" src="assets/images/krakow-ghetto-wall.jpg" width="1696" height="1200" loading="lazy" alt="Black-and-white photograph of forced laborers working among piles of stone and brick beside wooden structures, building a ghetto wall.">
+        </figure>
+        <div class="walls__panel walls__panel--l" data-el="left" aria-hidden="true"></div>
+        <div class="walls__panel walls__panel--r" data-el="right" aria-hidden="true"></div>
+        <div class="walls__lines">
+          <p class="walls__line" data-el="t1"><span class="walls__year">1933</span>Adolf Hitler becomes chancellor of Germany.</p>
+          <p class="walls__line" data-el="t2"><span class="walls__year">1939</span>Germany invades Poland. The persecution of Jews begins almost at once.</p>
+          <div class="walls__line walls__line--head" data-el="t3">
+            <p class="chapter__num">02</p>
+            <h2 class="headline headline--xl">First the walls.<br>Then the underground.</h2>
+          </div>
+        </div>
+        <figcaption class="label label--overlay" data-el="label">
+          <span class="label__title">Walling in Kraków</span>
+          <span class="label__text">Forced laborers constructing the wall around the Kraków ghetto.</span>
+          <span class="label__meta">Kraków, 1941 · USHMM, photo no. 39064</span>
+        </figcaption>
       </div>
-      <div class="band__content">
-        <p class="chapter__num reveal">02</p>
-        <p class="eyebrow reveal">Ghettoization</p>
-        <h2 class="headline headline--xl reveal" style="--d:.1s">First the walls.<br>Then the underground.</h2>
-      </div>
-      <figcaption class="label label--overlay">
-        <span class="label__title">Walling in Kraków</span>
-        <span class="label__text">Forced laborers constructing the wall around the Kraków ghetto.</span>
-        <span class="label__meta">Kraków, 1941 · USHMM, photo no. 39064</span>
-      </figcaption>
-    </figure>
+    </div>
 
     <div class="section">
       <div class="split">
-        <div class="panel reveal">
+        <div class="panel reveal reveal--left">
           <h3 class="panel__title">Sealed in</h3>
-          <p>Adolf Hitler became chancellor of Germany in 1933. When Nazi Germany invaded Poland in 1939, the persecution of Jews began almost at once. Jews were forced into ghettos—parts of cities walled off and isolated, designed to weaken the people trapped inside. The Warsaw ghetto was far larger than many imagine, and witnesses describe it as desperately overcrowded.<sup class="fn"><a id="ref-10" href="#fn-10" aria-label="Note 10">10</a></sup></p>
+          <p>Jews were forced into ghettos—parts of cities walled off and isolated, designed to weaken the people trapped inside. The Warsaw ghetto was far larger than many imagine, and witnesses describe it as desperately overcrowded.<sup class="fn"><a id="ref-10" href="#fn-10" aria-label="Note 10">10</a></sup> Picture your own neighborhood with a wall around it, and everyone you know inside.</p>
         </div>
-        <div class="panel reveal" style="--d:.15s">
+        <div class="panel reveal reveal--right" style="--d:.15s">
           <h3 class="panel__title">Organized from within</h3>
           <p>Inside these walls, resistance took shape. The Jewish Fighting Organization (ŻOB), founded in the Warsaw ghetto, sent fighters to other ghettos to spark new movements. Resistance meant smuggling in weapons, publishing calls to fight, and urging people to ignore Nazi orders to report to the Umschlagplatz for “resettlement.” Most of it was led by youth groups—run by teenagers.</p>
         </div>
@@ -194,18 +224,27 @@
 
   <!-- ============ 03 FRUMKA ============ -->
   <section id="frumka" class="chapter" data-chapter>
-    <header class="section chapter__head chapter__head--person">
-      <p class="chapter__num reveal">03</p>
-      <p class="eyebrow reveal">Frumka Płotnicka · 1914–1943</p>
-      <h2 class="headline headline--xl reveal" style="--d:.1s">The courier<br>who stayed.</h2>
-    </header>
+    <div class="section choice" data-choice>
+      <p class="chapter__num reveal">03 · Frumka Płotnicka · 1914–1943</p>
+      <p class="eyebrow reveal">Summer 1939 · Stand in her place</p>
+      <p class="choice__prompt reveal" style="--d:.1s">Your papers to emigrate to the Land of Israel are ready. Then the leaders of your movement ask you to stay behind in Warsaw.</p>
+      <div class="choice__options reveal" style="--d:.2s" role="group" aria-label="What would you do?">
+        <button type="button" class="choice__btn" data-pick="a">Leave for the Land of Israel</button>
+        <button type="button" class="choice__btn" data-pick="b">Stay in Warsaw</button>
+      </div>
+      <div class="choice__result" aria-live="polite">
+        <p class="choice__verdict" data-for="a">Many would have left.</p>
+        <p class="choice__verdict" data-for="b">You chose as she did.</p>
+        <h2 class="headline headline--xl choice__answer">Frumka stayed.</h2>
+      </div>
+    </div>
 
     <div class="story" data-story>
       <div class="story__stage" aria-hidden="true"></div>
       <div class="story__steps">
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--tilt" data-enter="tilt" style="--r:-2deg">
             <img src="assets/images/frumka-plotnicka-portrait.jpg" width="437" height="600" loading="lazy" alt="Black-and-white portrait of Frumka Płotnicka, a young woman with dark hair and a direct gaze.">
             <figcaption class="label">
               <span class="label__title">Frumka Płotnicka</span>
@@ -215,12 +254,12 @@
           </figure>
           <div class="step__text">
             <h3 class="step__title">A destiny decided</h3>
-            <p>Frumka was born in 1914 into a Hasidic family in Belarus, one of five children. As a teenager she joined the Zionist movement He-Haluz, which trained young Jews for life on a kibbutz. She was set to emigrate in the summer of 1939—but the movement’s leaders asked her to remain in Europe as emissary to its Warsaw branch. It was a decision that would decide her destiny.<sup class="fn"><a id="ref-11" href="#fn-11" aria-label="Note 11">11</a></sup></p>
+            <p>Frumka was born in 1914 into a Hasidic family in Belarus, one of five children. As a teenager she joined the Zionist movement He-Haluz, which trained young Jews for life on a kibbutz. When its leaders asked her to remain in Europe as emissary to the Warsaw branch, she agreed. It was a decision that would decide her destiny.<sup class="fn"><a id="ref-11" href="#fn-11" aria-label="Note 11">11</a></sup></p>
           </div>
         </article>
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--rise" data-enter="rise">
             <img src="assets/images/oneg-shabbat-milk-can.jpg" width="946" height="1200" loading="lazy" alt="A dented, rust-colored metal milk can displayed on a dark plinth.">
             <figcaption class="label">
               <span class="label__title">Oneg Shabbat milk can</span>
@@ -235,7 +274,7 @@
         </article>
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--scale" data-enter="zoom">
             <img src="assets/images/oneg-shabbat-unearthing.jpg" width="2000" height="1393" loading="lazy" alt="Black-and-white photograph of men in coats bending over a hole in rubble, lifting a metal box out of the ground.">
             <figcaption class="label">
               <span class="label__title">Unearthing the archive</span>
@@ -250,7 +289,7 @@
         </article>
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--left" data-enter="pan">
             <img src="assets/images/bedzin-ghetto-street.jpg" width="2000" height="1365" loading="lazy" alt="Sepia photograph of a cobbled street lined with old houses and a few pedestrians in the Będzin ghetto.">
             <figcaption class="label">
               <span class="label__title">A street in the ghetto</span>
@@ -264,42 +303,74 @@
           </div>
         </article>
 
-        <article class="step">
-          <figure class="object object--pair">
-            <div class="pair">
-              <img src="assets/images/bedzin-last-letter-p1.jpg" width="480" height="682" loading="lazy" alt="First page of a typewritten letter on aged paper, dense with text.">
-              <img src="assets/images/bedzin-last-letter-p2.jpg" width="480" height="676" loading="lazy" alt="Second page of the typewritten letter, with text ending partway down the page.">
-            </div>
-            <figcaption class="label">
-              <span class="label__title">The last letter from Będzin</span>
-              <span class="label__text">Written by the Będzin fighters to comrades already in the Land of Israel. Its authors were murdered; copies survived the war.</span>
-              <span class="label__meta">1943 · Jewish Historical Institute, Warsaw</span>
-            </figcaption>
-          </figure>
-          <div class="step__text">
-            <h3 class="step__title">Her last testimony</h3>
-            <p>Frumka’s missions are recorded in a final letter to colleagues already in the Land of Israel. Reading it, you feel the writers’ grief as they list their murdered comrades—and their calm, having faced death so many times, about their own fate.<sup class="fn"><a id="ref-18" href="#fn-18" aria-label="Note 18">18</a></sup> It forces an uncomfortable question. What would you have done? Would you have gone back?</p>
-          </div>
-        </article>
+      </div>
+    </div>
 
+    <!-- scroll scene: the last letter lifts off the table and fans open -->
+    <div class="scene scene--letter" data-scene="letter" style="--len: 240vh">
+      <div class="scene__pin scene__pin--center">
+        <div class="letter">
+          <div class="letter__pages" data-el="pages">
+            <img data-el="p1" src="assets/images/bedzin-last-letter-p1.jpg" width="480" height="682" loading="lazy" alt="First page of a typewritten letter on aged paper, dense with text.">
+            <img data-el="p2" src="assets/images/bedzin-last-letter-p2.jpg" width="480" height="676" loading="lazy" alt="Second page of the typewritten letter, with text ending partway down the page.">
+          </div>
+          <div class="letter__copy" data-el="copy">
+            <h3 class="step__title">Her last testimony</h3>
+            <p class="step__text">Frumka’s missions are recorded in a final letter the Będzin fighters wrote to colleagues already in the Land of Israel. Its authors were murdered, but copies survived. Reading it, you feel their grief as they list their murdered comrades—and their calm, having faced death so many times, about their own fate.<sup class="fn"><a id="ref-18" href="#fn-18" aria-label="Note 18">18</a></sup></p>
+            <p class="letter__ask">What would you have done?<br>Would you have gone back?</p>
+            <p class="label">
+              <span class="label__title">The last letter from Będzin</span>
+              <span class="label__meta">1943 · Jewish Historical Institute, Warsaw</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 04 VLADKA ============ -->
   <section id="vladka" class="chapter chapter--tint" data-chapter>
-    <header class="section chapter__head chapter__head--person">
-      <p class="chapter__num reveal">04</p>
-      <p class="eyebrow reveal">Vladka Meed · 1921–2012</p>
-      <h2 class="headline headline--xl reveal" style="--d:.1s">The witness on<br>the other side of the wall.</h2>
-    </header>
+    <div class="section choice" data-choice>
+      <p class="chapter__num reveal">04 · Vladka Meed · 1921–2012</p>
+      <p class="eyebrow reveal">Warsaw · Stand in her place</p>
+      <p class="choice__prompt reveal" style="--d:.1s">Your father has died in the ghetto. Your mother, sister, and brother have been deported to Treblinka. You are alone.<sup class="fn"><a id="ref-20" href="#fn-20" aria-label="Note 20">20</a></sup> You hold papers that say you are a Polish girl named Stanisława Wachalska.</p>
+      <div class="choice__options reveal" style="--d:.2s" role="group" aria-label="What would you do?">
+        <button type="button" class="choice__btn" data-pick="a">Hide and save yourself</button>
+        <button type="button" class="choice__btn" data-pick="b">Go back into the ghetto</button>
+      </div>
+      <div class="choice__result" aria-live="polite">
+        <p class="choice__verdict" data-for="a">Many would have hidden.</p>
+        <p class="choice__verdict" data-for="b">You chose as she did.</p>
+        <h2 class="headline headline--xl choice__answer">Vladka went back.<br>Again and again.</h2>
+      </div>
+    </div>
+
+    <!-- scroll scene: the false ID card turns to face you -->
+    <div class="scene scene--card" data-scene="card" style="--len: 240vh">
+      <div class="scene__pin scene__pin--center">
+        <div class="card-layout">
+          <figure class="card3d">
+            <img data-el="card" src="assets/images/vladka-meed-false-id.jpg" width="1637" height="1200" loading="lazy" alt="A worn wartime identity card with a photograph of a young woman, fingerprints, official stamps, and handwritten details.">
+            <figcaption class="label" data-el="label">
+              <span class="label__title">A borrowed name</span>
+              <span class="label__text">False identification card issued in the name of Stanisława Wachalska, used by Feigele Peltel (Vladka Meed) as a courier for the Jewish underground in Warsaw.</span>
+              <span class="label__meta">Warsaw, wartime · USHMM, photo no. 02325</span>
+            </figcaption>
+          </figure>
+          <div class="card-copy">
+            <p class="card__name" data-el="name">Stanisława<br>Wachalska</p>
+            <p class="step__text" data-el="copy">Born Feigele Peltel, she was chosen by the resistance to live on the “Aryan side” under this false name.<sup class="fn"><a id="ref-23" href="#fn-23" aria-label="Note 23">23</a></sup> From there she obtained bullets, dynamite, and guns, and smuggled them into the ghetto. With these papers she could have simply hidden. Instead she crossed back and forth, again and again, to help the Jews still inside.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="story story--flip" data-story>
       <div class="story__stage" aria-hidden="true"></div>
       <div class="story__steps">
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--tilt" data-enter="tilt" style="--r:2deg">
             <img src="assets/images/vladka-meed-courier.jpg" width="505" height="768" loading="lazy" alt="Black-and-white photograph of a young woman in a light dress and dark shoes standing on a grassy path, holding a handbag.">
             <figcaption class="label">
               <span class="label__title">On a mission</span>
@@ -308,28 +379,13 @@
             </figcaption>
           </figure>
           <div class="step__text">
-            <h3 class="step__title">Left alone</h3>
-            <p>Feigele Peltel grew up in a traditional Jewish family in Warsaw and was active in socialist youth movements as a teenager. When the Nazis sealed the ghetto, her family was trapped inside. Her father died of pneumonia. Her mother, sister, and brother were deported to Treblinka. She was left alone—the sole survivor of her family.<sup class="fn"><a id="ref-20" href="#fn-20" aria-label="Note 20">20</a></sup></p>
+            <h3 class="step__title">Hiding in plain sight</h3>
+            <p>Look at the photograph. A young woman in a summer dress, holding a handbag. Nothing about her would make a passerby look twice. That was the point. Vladka grew up in a traditional Jewish family in Warsaw and was active in socialist youth movements as a teenager. Now her ordinary look was her disguise.<sup class="fn"><a href="#fn-20" aria-label="Note 20">20</a></sup></p>
           </div>
         </article>
 
         <article class="step">
-          <figure class="object">
-            <img src="assets/images/vladka-meed-false-id.jpg" width="1637" height="1200" loading="lazy" alt="A worn wartime identity card with a photograph of a young woman, fingerprints, official stamps, and handwritten details.">
-            <figcaption class="label">
-              <span class="label__title">A borrowed name</span>
-              <span class="label__text">False identification card issued in the name of Stanisława Wachalska, used by Feigele Peltel (Vladka Meed) while serving as a courier for the Jewish underground in Warsaw.</span>
-              <span class="label__meta">Warsaw, wartime · USHMM, photo no. 02325</span>
-            </figcaption>
-          </figure>
-          <div class="step__text">
-            <h3 class="step__title">Stanisława Wachalska</h3>
-            <p>The resistance chose her to live on the “Aryan side” under a false name.<sup class="fn"><a id="ref-23" href="#fn-23" aria-label="Note 23">23</a></sup> From there she obtained bullets, dynamite, and guns, and smuggled them into the ghetto. With these papers she could have simply hidden and saved herself. Instead she crossed back and forth, again and again, to help the Jews still inside.</p>
-          </div>
-        </article>
-
-        <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--rise" data-enter="rise">
             <img src="assets/images/warsaw-ghetto-childs-shoe.jpg" width="1920" height="1282" loading="lazy" alt="Gloved hands hold a small, earth-stained leather child's shoe just lifted from the soil.">
             <figcaption class="label">
               <span class="label__title">A child’s shoe</span>
@@ -344,7 +400,7 @@
         </article>
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--scale" data-enter="zoom">
             <a class="media-link" href="https://www.youtube.com/watch?v=nKLeGBfyrJA" target="_blank" rel="noopener">
               <img src="assets/images/vladka-meed-testimony.jpg" width="1268" height="951" loading="lazy" alt="Still from a video interview: an older woman with short hair and a pink jacket speaks in a softly lit living room.">
               <span class="media-link__cta">Watch her testimony ↗</span>
@@ -367,18 +423,47 @@
 
   <!-- ============ 05 HANNAH ============ -->
   <section id="hannah" class="chapter" data-chapter>
-    <header class="section chapter__head chapter__head--person">
-      <p class="chapter__num reveal">05</p>
-      <p class="eyebrow reveal">Hannah Senesh · 1921–1944</p>
-      <h2 class="headline headline--xl reveal" style="--d:.1s">The one who<br>came back.</h2>
-    </header>
+    <div class="section choice" data-choice>
+      <p class="chapter__num reveal">05 · Hannah Senesh · 1921–1944</p>
+      <p class="eyebrow reveal">1943 · Stand in her place</p>
+      <p class="choice__prompt reveal" style="--d:.1s">You left Hungary four years ago. You are safe on a kibbutz by the sea. News reaches you of the tragedy in Europe, and the British army is looking for volunteers to parachute behind enemy lines.</p>
+      <div class="choice__options reveal" style="--d:.2s" role="group" aria-label="What would you do?">
+        <button type="button" class="choice__btn" data-pick="a">Stay where you are safe</button>
+        <button type="button" class="choice__btn" data-pick="b">Volunteer</button>
+      </div>
+      <div class="choice__result" aria-live="polite">
+        <p class="choice__verdict" data-for="a">Many would have stayed.</p>
+        <p class="choice__verdict" data-for="b">You chose as she did.</p>
+        <h2 class="headline headline--xl choice__answer">Hannah came back.</h2>
+      </div>
+    </div>
+
+    <!-- scroll scene: the suitcase leaves, turns around, and returns -->
+    <div class="scene scene--suitcase" data-scene="suitcase" style="--len: 320vh">
+      <div class="scene__pin scene__pin--center">
+        <div class="journey">
+          <p class="journey__line" data-el="t1"><span class="walls__year">1939</span>She leaves Hungary, alone.</p>
+          <p class="journey__line" data-el="t2"><span class="walls__year">1944</span>She comes back.</p>
+          <div class="journey__track">
+            <img class="journey__case" data-el="case" src="assets/images/hannah-senesh-suitcase.jpg" width="1000" height="355" loading="lazy" alt="A worn brown leather suitcase with metal clasps and a handle.">
+          </div>
+          <div class="journey__copy" data-el="copy">
+            <p class="step__text">This suitcase carried her out of Hungary in 1939.<sup class="fn"><a id="ref-26" href="#fn-26" aria-label="Note 26">26</a></sup> She had escaped. She chose to return to help her nation and her family—and paid for that choice with her life.</p>
+            <p class="label">
+              <span class="label__title">The suitcase</span>
+              <span class="label__meta">1939 · National Library of Israel, Senesh Family Archive, with thanks to Ori and Mirit Eisen</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="story" data-story>
       <div class="story__stage" aria-hidden="true"></div>
       <div class="story__steps">
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--tilt" data-enter="tilt" style="--r:-2deg">
             <img src="assets/images/hannah-senesh-uniform.jpg" width="540" height="700" loading="lazy" alt="Black-and-white photograph of Hannah Senesh in a military uniform and cap, smiling and saluting.">
             <figcaption class="label">
               <span class="label__title">Hannah Szenes (Senesh)</span>
@@ -387,28 +472,13 @@
             </figcaption>
           </figure>
           <div class="step__text">
-            <h3 class="step__title">She had escaped</h3>
-            <p>Hannah was born in Hungary in 1921. By 1939 she already felt the weight of antisemitic restrictions, and that year she emigrated—alone—to the Land of Israel, where she helped establish Kibbutz Sdot Yam.<sup class="fn"><a id="ref-25" href="#fn-25" aria-label="Note 25">25</a></sup> She was safe. The war in Europe could have been someone else’s story.</p>
+            <h3 class="step__title">Codename “Hagar”</h3>
+            <p>Hannah was born in Hungary in 1921. Feeling the weight of antisemitic restrictions, she emigrated alone in 1939 to the Land of Israel, where she helped establish Kibbutz Sdot Yam. In 1943, hearing of the tragedy in Europe, she volunteered as a paratrooper in the British army. Her codename was “Hagar.”<sup class="fn"><a id="ref-25" href="#fn-25" aria-label="Note 25">25</a></sup></p>
           </div>
         </article>
 
         <article class="step">
-          <figure class="object">
-            <img src="assets/images/hannah-senesh-suitcase.jpg" width="1000" height="355" loading="lazy" alt="A worn brown leather suitcase with metal clasps and a handle, photographed from the front.">
-            <figcaption class="label">
-              <span class="label__title">The suitcase</span>
-              <span class="label__text">Used by Hannah Senesh when she emigrated from Hungary.</span>
-              <span class="label__meta">1939 · National Library of Israel, Senesh Family Archive, with thanks to Ori and Mirit Eisen</span>
-            </figcaption>
-          </figure>
-          <div class="step__text">
-            <h3 class="step__title">A way out</h3>
-            <p>This suitcase carried her out of Hungary.<sup class="fn"><a id="ref-26" href="#fn-26" aria-label="Note 26">26</a></sup> It is a reminder that Hannah was never imprisoned in Nazi-occupied Europe. She had already left. She chose to return to help her nation and her family—and paid for that choice with her life.</p>
-          </div>
-        </article>
-
-        <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--scale" data-enter="zoom">
             <img src="assets/images/parachutists-map.png" width="640" height="420" loading="lazy" alt="Map of Europe titled Jewish Parachutists from Palestine 1943–1945, marking countries such as Hungary, Romania, Slovakia, and Yugoslavia where parachutists were dropped.">
             <figcaption class="label">
               <span class="label__title">Jewish parachutists from Palestine</span>
@@ -417,13 +487,13 @@
             </figcaption>
           </figure>
           <div class="step__text">
-            <h3 class="step__title">Codename “Hagar”</h3>
-            <p>In 1943, hearing of the tragedy in Europe, Hannah volunteered as a paratrooper in the British army. Her mission: cross enemy lines, make contact with partisans, gather intelligence, and aid Allied pilots forced to bail out over enemy territory. In 1944 she was dropped into Croatia, where she worked with the partisans for several months.<sup class="fn"><a href="#fn-25" aria-label="Note 25">25</a></sup></p>
+            <h3 class="step__title">Behind enemy lines</h3>
+            <p>Her mission: cross enemy lines, make contact with partisans, gather intelligence, and aid Allied pilots forced to bail out over enemy territory. In 1944 she was dropped into Croatia, where she worked with the partisans for several months.<sup class="fn"><a href="#fn-25" aria-label="Note 25">25</a></sup></p>
           </div>
         </article>
 
         <article class="step">
-          <figure class="object">
+          <figure class="object reveal reveal--rise" data-enter="rise">
             <img src="assets/images/hannah-senesh-last-note.jpg" width="1408" height="1684" loading="lazy" alt="A small handwritten note in Hungarian on yellowed paper, framed by a black border.">
             <figcaption class="label">
               <span class="label__title">The last note</span>
@@ -453,17 +523,17 @@
       <p class="eyebrow reveal">What counts as resistance?</p>
       <h2 class="headline headline--xl reveal" style="--d:.1s">Did it make<br>a difference?</h2>
       <div class="panel panel--center reveal" style="--d:.2s">
-        <p>Scholars disagree about what “resistance” means—and so about whether Jews went “like sheep to the slaughter.”</p>
+        <p>Scholars disagree about what “resistance” means—and so about whether Jews went “like sheep to the slaughter.” Read both views. Where do you stand?</p>
       </div>
     </div>
 
     <div class="section versus">
-      <div class="versus__col reveal">
+      <div class="versus__col reveal reveal--left">
         <p class="versus__name">Raul Hilberg</p>
         <p class="versus__claim">Resistance is armed force.</p>
         <p>The foremost Holocaust historian of his day argued that Jewish life did not lend itself to physical resistance. Without disparaging the fighters, he saw them as outliers: mostly young adults who had never conformed to traditional Jewish life.</p>
       </div>
-      <div class="versus__col reveal" style="--d:.15s">
+      <div class="versus__col reveal reveal--right" style="--d:.15s">
         <p class="versus__name">Yehuda Bauer</p>
         <p class="versus__claim">Resistance is keeping “body and soul together.”<sup class="fn"><a id="ref-35" href="#fn-35" aria-label="Note 35">35</a></sup></p>
         <p>By this measure, resistance included smuggling, Jews helping one another, and upholding religious law and custom as fully as they could.<sup class="fn"><a id="ref-36" href="#fn-36" aria-label="Note 36">36</a></sup></p>
@@ -474,8 +544,8 @@
       <figure class="object reveal reveal--scale">
         <div class="frame">
           <div class="parallax" data-speed="0.12">
-          <img src="assets/images/warsaw-uprising-umschlagplatz.jpg" width="1690" height="1200" loading="lazy" alt="Sepia photograph of a long column of men, women, and children carrying bundles, marched down a ruined street under guard.">
-        </div>
+            <img src="assets/images/warsaw-uprising-umschlagplatz.jpg" width="1690" height="1200" loading="lazy" alt="Sepia photograph of a long column of men, women, and children carrying bundles, marched down a ruined street under guard.">
+          </div>
         </div>
         <figcaption class="label">
           <span class="label__title">After the uprising</span>
@@ -505,11 +575,6 @@
 
   <!-- ============ CLOSING ============ -->
   <section id="closing" class="closing dark" data-chapter>
-    <div class="closing__media">
-      <div class="parallax" data-speed="0.3">
-        <img src="assets/images/yad-vashem-childrens-memorial.jpg" width="1440" height="960" loading="lazy" alt="Countless points of candlelight reflected into the darkness of the Children’s Memorial at Yad Vashem.">
-      </div>
-    </div>
     <div class="closing__inner">
       <blockquote class="pullquote pullquote--light reveal reveal--scale">
         <p>“The story of the Jewish woman will be a glorious page in the history of Jewry during the present war.”</p>
@@ -519,18 +584,27 @@
       <div class="panel panel--center reveal">
         <p>Three women had a chance at survival. All three returned to fight. Only one lived to tell her story. It is our responsibility to make sure future generations know their courage and their sacrifice.</p>
       </div>
-
-      <ol class="questions" aria-label="Questions for reflection">
-        <li class="reveal">If you witnessed injustice, would you speak up?</li>
-        <li class="reveal">Would you act if it meant risking harm to yourself?</li>
-        <li class="reveal">Given the chance to save yourself, would you return to the danger to help others?</li>
-        <li class="reveal accent">When faced with oppression, what do you do?</li>
-      </ol>
     </div>
-    <p class="label label--overlay closing__credit">
-      <span class="label__title">The Children’s Memorial</span>
-      <span class="label__meta">Yad Vashem, Jerusalem</span>
-    </p>
+
+    <!-- scroll scene: reflection questions, one at a time -->
+    <div class="scene scene--questions" data-scene="questions" style="--len: 400vh">
+      <div class="scene__pin scene__pin--center">
+        <figure class="questions__media">
+          <img data-el="img" src="assets/images/yad-vashem-childrens-memorial.jpg" width="1440" height="960" loading="lazy" alt="Countless points of candlelight reflected into the darkness of the Children’s Memorial at Yad Vashem.">
+        </figure>
+        <p class="eyebrow">Now, your turn</p>
+        <ol class="questions" aria-label="Questions for reflection">
+          <li data-el="q">If you witnessed injustice, would you speak up?</li>
+          <li data-el="q">Would you act if it meant risking harm to yourself?</li>
+          <li data-el="q">Given the chance to save yourself, would you return to the danger to help others?</li>
+          <li data-el="q" class="accent">When faced with oppression, what do you do?</li>
+        </ol>
+        <p class="label label--overlay">
+          <span class="label__title">The Children’s Memorial</span>
+          <span class="label__meta">Candlelight in the darkness · Yad Vashem, Jerusalem</span>
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- ============ SOURCES ============ -->
