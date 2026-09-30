@@ -35,6 +35,6 @@ To put it on a portfolio site instead, upload `index.html`, `css/`, `js/`, and `
 - **Text:** edit `index.html`. Each chapter is a clearly commented `<section>`.
 - **Footnotes:** superscript numbers are links such as `<a href="#fn-12">12</a>` pointing at the numbered notes in the Sources section.
 - **Accent color:** change `--accent` in `css/style.css`.
-- **Scroll scenes:** sections marked `data-scene` pin in place while scrolling plays their animation (hero, words lighting up, the 100 dots, the closing walls, the last letter, the ID card, the suitcase journey, the closing questions). Each scene's length is its `--len` value, and its animation is the matching function in `js/main.js`.
+- **Scroll scenes:** sections marked `data-scene` pin in place while scrolling plays their animation (hero, words lighting up, the closing walls, the last letter, the ID card, the suitcase journey, the closing questions). Each scene's length is its `--len` value, and its animation is the matching function in `js/main.js`.
 - **“Stand in her place”:** each woman's chapter opens with a choice. The reader picks an answer, then sees what she did. Scrolling past without choosing reveals it too.
 - **Motion:** parallax strength is the `data-speed` attribute on each `.parallax` element. Visitors with “reduce motion” turned on get a static page with every scene shown in its final state. Phones get lighter motion.

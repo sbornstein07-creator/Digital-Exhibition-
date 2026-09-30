@@ -126,15 +126,6 @@
     })(el);
   });
 
-  /* ---------- 100 dots ---------- */
-  document.querySelectorAll('[data-scene="dots"] [data-el="dots"]').forEach(function (grid) {
-    for (var i = 0; i < 100; i++) {
-      var d = document.createElement('span');
-      d.className = 'dot' + (!motion && i < 48 ? ' is-on' : '');
-      grid.appendChild(d);
-    }
-  });
-
   /* ---------- Scenes: scroll position drives the animation ---------- */
   var scenes = {
     hero: function (p, s) {
@@ -167,16 +158,6 @@
         var start = (i / n) * .8 + .02;
         words[i].style.opacity = String(lerp(.14, 1, seg(p, start, start + .1)));
       }
-    },
-
-    dots: function (p, s) {
-      var filled = Math.round(easeInOut(seg(p, .08, .65)) * 48);
-      var dots = s.querySelectorAll('.dot');
-      for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('is-on', i < filled);
-      $(s, 'num').textContent = filled + '%';
-      var you = $(s, 'you');
-      you.style.opacity = String(seg(p, .72, .85));
-      you.style.transform = 'translateY(' + ((1 - seg(p, .72, .85)) * 20) + 'px)';
     },
 
     walls: function (p, s) {

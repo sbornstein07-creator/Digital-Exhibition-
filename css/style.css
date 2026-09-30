@@ -294,25 +294,6 @@ sup.fn a:hover { text-decoration: underline; }
 .stat--sm .stat__num { font-size: clamp(4rem, 12vw, 8rem); color: var(--ink); }
 .stat--sm .stat__label { font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
 
-/* ---------- 100 dots ---------- */
-.dots-layout {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(32px, 6vw, 96px);
-  align-items: center; width: 100%; max-width: var(--max); text-align: left;
-}
-.stat__num--dots { font-size: clamp(5rem, 16vw, 12rem); margin-bottom: 12px; }
-.dots-copy .stat__label { max-width: 22ch; }
-.dots__you { font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--muted); margin-top: 24px; }
-.motion .dots__you { opacity: 0; }
-.dots {
-  display: grid; grid-template-columns: repeat(10, 1fr); gap: clamp(6px, 1vw, 12px);
-  width: min(46vh, 440px);
-}
-.dot {
-  aspect-ratio: 1; border-radius: 50%; background: var(--line);
-  transition: background .35s var(--ease), transform .35s var(--ease);
-}
-.dot.is-on { background: var(--accent); transform: scale(1.12); }
-
 .gallery { display: grid; gap: clamp(32px, 5vw, 64px); margin-bottom: clamp(80px, 12vh, 140px); align-items: end; }
 .gallery--2 { grid-template-columns: 1.2fr 1fr; }
 
@@ -600,12 +581,6 @@ sup.fn a:hover { text-decoration: underline; }
   .split, .gallery--2, .versus { grid-template-columns: 1fr; }
   .label--overlay { left: var(--gutter); right: var(--gutter); bottom: 20px; }
   .hero__frame .label--overlay { display: none; } /* keep the hero uncluttered; credit is in Image credits */
-
-  .dots-layout { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 24px; }
-  .dots-copy .stat__label { margin: 0 auto; }
-  .stat__num--dots { font-size: clamp(4.5rem, 24vw, 8rem); margin-bottom: 8px; }
-  .dots { width: min(64vw, 30vh); gap: 5px; }
-  .dots__you { margin-top: 12px; }
 
   .card-layout, .letter { grid-template-columns: 1fr; gap: 20px; text-align: center; }
   .card3d { width: min(100%, 44vh); margin: 0 auto; }
