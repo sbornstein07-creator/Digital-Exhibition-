@@ -8,7 +8,7 @@ Plain HTML, CSS, and JavaScript. No build step, no frameworks.
 index.html        the exhibition (all text, labels, notes, bibliography)
 css/style.css     design: colors and fonts are tokens at the top of the file
 js/main.js        scroll scenes, parallax, reveals, sticky image stories, choices
-assets/images/    images extracted from the slides and paper
+assets/images/    photos extracted from the slides and paper (not used on the page; kept for reference)
 ```
 
 ## Preview locally
@@ -34,6 +34,7 @@ To put it on a portfolio site instead, upload `index.html`, `css/`, `js/`, and `
 
 - **Text:** edit `index.html`. Each chapter is a clearly commented `<section>`.
 - **Footnotes:** superscript numbers are links such as `<a href="#fn-12">12</a>` pointing at the numbered notes in the Sources section.
+- **Sketches:** every illustration is an inline SVG line drawing in `index.html`. Each `<path>` has `pathLength="1"`, which lets it draw itself line by line. Sketches inside scroll scenes (class `sketch--scrub`) draw as you scroll; the rest draw when they come into view.
 - **Accent color:** change `--accent` in `css/style.css`.
 - **Scroll scenes:** sections marked `data-scene` pin in place while scrolling plays their animation (hero, words lighting up, the closing walls, the last letter, the ID card, the suitcase journey, the closing questions). Each scene's length is its `--len` value, and its animation is the matching function in `js/main.js`.
 - **“Stand in her place”:** each woman's chapter opens with a choice. The reader picks an answer, then sees what she did. Scrolling past without choosing reveals it too.

@@ -26,6 +26,17 @@
     var i = seg(p, a, b);
     return c === undefined ? i : i * (1 - seg(p, c, d));
   }
+  // Draw a scroll-driven sketch: t = 0 shows nothing, t = 1 the full drawing.
+  // Strokes start one after another, so it reads like a pen at work.
+  function drawSketch(svg, t) {
+    if (!svg) return;
+    var paths = svg._paths || (svg._paths = svg.querySelectorAll('path'));
+    var n = paths.length;
+    for (var i = 0; i < n; i++) {
+      var start = (i / n) * .75;
+      paths[i].style.strokeDashoffset = String(1 - seg(t, start, start + .25));
+    }
+  }
   function $(scene, name) { return scene.querySelector('[data-el="' + name + '"]'); }
   function $$(scene, name) { return scene.querySelectorAll('[data-el="' + name + '"]'); }
 
@@ -129,26 +140,18 @@
   /* ---------- Scenes: scroll position drives the animation ---------- */
   var scenes = {
     hero: function (p, s) {
-      var shrink = easeOut(seg(p, 0, .5));
-      var frame = $(s, 'frame'), img = $(s, 'img');
-      var insetY = shrink * (isSmall.matches ? 14 : 10), insetX = shrink * (isSmall.matches ? 6 : 12);
-      frame.style.clipPath = 'inset(' + insetY + 'vh ' + insetX + 'vw round ' + (shrink * 24) + 'px)';
-      // the photo stays dim while text sits on it, then brightens into an object
-      var bright = seg(p, .86, 1);
-      frame.style.setProperty('--shade', String(1 - bright * .7));
-      img.style.transform = 'scale(' + lerp(1.18, 1, shrink) + ')';
-      img.style.opacity = String(lerp(.5, .95, bright));
-      img.style.filter = 'grayscale(' + lerp(1, .35, bright) + ') contrast(1.05)';
+      // the title lifts away while the wall is sketched in, brick by brick
+      drawSketch($(s, 'img'), seg(p, .1, .7));
 
       var title = $(s, 'title'), out = seg(p, 0, .28);
       title.style.opacity = String(1 - out);
       title.style.transform = 'translateY(' + (-out * 80) + 'px) scale(' + (1 - out * .12) + ')';
 
-      var line = $(s, 'line'), l = window4(p, .4, .56, .78, .88);
+      var line = $(s, 'line'), l = seg(p, .55, .7);
       line.style.opacity = String(l);
-      line.style.transform = 'translateY(' + ((1 - seg(p, .4, .56)) * 40) + 'px)';
+      line.style.transform = 'translateY(' + ((1 - l) * 30) + 'px)';
 
-      $(s, 'label').style.opacity = String(seg(p, .88, .98));
+      $(s, 'label').style.opacity = String(seg(p, .82, .94));
       $(s, 'cue').style.opacity = String(1 - seg(p, 0, .08));
     },
 
@@ -166,7 +169,9 @@
       var shift = lerp(-100, -gap, close);
       $(s, 'left').style.transform = 'translateX(' + shift + '%)';
       $(s, 'right').style.transform = 'translateX(' + (-shift) + '%)';
-      $(s, 'img').style.transform = 'scale(' + lerp(1.25, 1.02, p) + ')';
+      var street = $(s, 'img');
+      drawSketch(street, seg(p, 0, .3));
+      street.style.transform = 'scale(' + lerp(1.08, 1, p) + ')';
 
       var t1 = $(s, 't1'), t2 = $(s, 't2'), t3 = $(s, 't3');
       t1.style.opacity = String(window4(p, .02, .1, .22, .28));
@@ -182,6 +187,8 @@
     letter: function (p, s) {
       var lift = easeOut(seg(p, 0, .45)), fan = easeInOut(seg(p, .3, .7));
       var p1 = $(s, 'p1'), p2 = $(s, 'p2');
+      drawSketch(p1, seg(p, 0, .45));
+      drawSketch(p2, seg(p, .1, .55));
       var tilt = lerp(62, 0, lift), y = lerp(18, 0, lift);
       p1.style.transform = 'translateY(' + y + '%) rotateX(' + tilt + 'deg) translateX(' + lerp(-2, -30, fan) + '%) rotate(' + lerp(-1, -6, fan) + 'deg)';
       p2.style.transform = 'translateY(' + y + '%) rotateX(' + tilt + 'deg) translateX(' + lerp(2, 30, fan) + '%) rotate(' + lerp(1.5, 5, fan) + 'deg)';
@@ -193,6 +200,7 @@
     card: function (p, s) {
       var turn = easeOut(seg(p, 0, .5)), drift = seg(p, .5, 1);
       var card = $(s, 'card');
+      drawSketch(card, seg(p, 0, .45));
       card.style.transform =
         'rotateY(' + lerp(-80, 0, turn) + 'deg) rotateX(' + lerp(24, 0, turn) + 'deg) rotateZ(' + lerp(-10, 0, turn) + 'deg)' +
         ' scale(' + lerp(.7, 1, turn) + ') rotateY(' + (drift * 6) + 'deg)';
@@ -208,6 +216,7 @@
 
     suitcase: function (p, s) {
       var kase = $(s, 'case');
+      drawSketch(kase, seg(p, 0, .12));
       var leave = easeInOut(seg(p, .04, .42)), back = easeOut(seg(p, .5, .82));
       var x, rot, bob;
       if (p < .46) {             // 1939: travels off to the right
@@ -234,7 +243,9 @@
         var inY = (1 - seg(p, a, b)) * 40, outY = last ? 0 : seg(p, c, d) * -40;
         qs[i].style.transform = 'translateY(' + (inY + outY) + 'px) scale(' + lerp(.94, 1, seg(p, a, b)) + ')';
       }
-      $(s, 'img').style.transform = 'scale(' + lerp(1.05, 1.3, p) + ')';
+      var candles = $(s, 'img');
+      drawSketch(candles, seg(p, 0, .6));
+      candles.style.transform = 'scale(' + lerp(1, 1.15, p) + ')';
     }
   };
 
@@ -263,7 +274,6 @@
         if (!fig) return;
         var clone = fig.cloneNode(true);
         clone.className = 'object stage__item' + (i === 0 ? ' is-active' : '');
-        clone.querySelectorAll('img').forEach(function (img) { img.loading = 'eager'; });
         stage.appendChild(clone);
       });
       // The stage repeats figures already in the reading order: hidden from
@@ -298,6 +308,21 @@
       var r = step.getBoundingClientRect();
       stage.style.setProperty('--sp', clamp((vh / 2 - r.top) / r.height, 0, 1).toFixed(3));
     });
+  }
+
+  /* ---------- Sketches that draw themselves when they come into view ---------- */
+  var drawEls = Array.prototype.filter.call(document.querySelectorAll('.sketch:not(.sketch--scrub)'), function (el) {
+    return !el.closest('.stage__item');
+  });
+  if ('IntersectionObserver' in window && motion) {
+    var drawObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-drawn'); drawObs.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -15% 0px', threshold: 0.2 });
+    drawEls.forEach(function (el) { drawObs.observe(el); });
+  } else {
+    drawEls.forEach(function (el) { el.classList.add('is-drawn'); });
   }
 
   /* ---------- Parallax layers ---------- */
