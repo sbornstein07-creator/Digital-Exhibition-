@@ -26,15 +26,16 @@
     var i = seg(p, a, b);
     return c === undefined ? i : i * (1 - seg(p, c, d));
   }
-  // Draw a scroll-driven sketch: t = 0 shows nothing, t = 1 the full drawing.
-  // Strokes start one after another, so it reads like a pen at work.
+  // Bring in a scroll-driven silhouette: t = 0 shows nothing, t = 1 the whole picture.
+  // Parts appear one after another, as if lit from behind.
   function drawSketch(svg, t) {
     if (!svg) return;
     var paths = svg._paths || (svg._paths = svg.querySelectorAll('path'));
     var n = paths.length;
     for (var i = 0; i < n; i++) {
       var start = (i / n) * .75;
-      paths[i].style.strokeDashoffset = String(1 - seg(t, start, start + .25));
+      var on = seg(t, start, start + .25);
+      paths[i].style.opacity = String(paths[i].classList.contains('soft') ? on * .55 : on);
     }
   }
   function $(scene, name) { return scene.querySelector('[data-el="' + name + '"]'); }
